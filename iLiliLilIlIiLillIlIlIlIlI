@@ -9,7 +9,7 @@ import keyboard
 
 # Function to fetch valid keys from GitHub
 def fetch_valid_keys():
-    url = "https://raw.githubusercontent.com/Assistlont/AssistlontKEYSYSTEMVALIDATE/refs/heads/main/KEYS"
+    url = "https://raw.githubusercontent.com/USJADJUDJASJD90123UJE8123/KIIIIYASLilILIlliiillsYSTEMAmmnLYITEstdIiiliklIlIlIlIli/refs/heads/main/KEYS"
     try:
         response = requests.get(url)
         response.raise_for_status()
