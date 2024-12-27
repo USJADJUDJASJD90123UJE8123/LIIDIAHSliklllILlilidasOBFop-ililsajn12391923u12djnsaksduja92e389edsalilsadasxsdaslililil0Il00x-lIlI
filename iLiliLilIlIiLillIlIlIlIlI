@@ -1,0 +1,297 @@
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import ttk
+import requests
+import pyperclip
+import pyautogui
+import time
+import keyboard
+
+# Function to fetch valid keys from GitHub
+def fetch_valid_keys():
+    url = "https://raw.githubusercontent.com/Assistlont/AssistlontKEYSYSTEMVALIDATE/refs/heads/main/KEYS"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text.splitlines()  # Split keys by newlines
+    except requests.RequestException as e:
+        print(f"Error fetching keys: {e}")
+        return []
+
+# Key validation function
+def validate_key():
+    entered_key = key_entry.get().strip()
+    if entered_key in valid_keys:
+        key_window.destroy()  # Close the key system window
+        root.deiconify()  # Show the main moderation panel
+    else:
+        validation_result_label.config(
+            text="WRONG KEY! CONTACT @assistlont ON DISCORD!",
+            fg="red"
+        )
+
+# Display the key system window
+def show_key_system():
+    global key_entry, validation_result_label, key_window
+
+    key_window = tk.Tk()
+    key_window.title("Key System Validation")
+    key_window.geometry("400x200")
+    key_window.configure(bg="#2E2E2E")
+
+    label = tk.Label(
+        key_window,
+        text="Enter your validation key:",
+        bg="#2E2E2E",
+        fg="white",
+        font=("Arial", 12)
+    )
+    label.pack(pady=10)
+
+    key_entry = ttk.Entry(key_window, width=40)
+    key_entry.pack(pady=10)
+
+    validate_button = ttk.Button(
+        key_window,
+        text="Validate",
+        command=validate_key
+    )
+    validate_button.pack(pady=10)
+
+    validation_result_label = tk.Label(
+        key_window,
+        text="",
+        bg="#2E2E2E",
+        fg="white",
+        font=("Arial", 10)
+    )
+    validation_result_label.pack(pady=5)
+
+    key_window.mainloop()
+
+# Startup Warning Function
+def show_startup_warning():
+    warning_window = tk.Tk()
+    warning_window.title("Warning")
+    warning_window.geometry("500x200")
+    warning_window.configure(bg="#2E2E2E")
+
+    warning_label = tk.Label(
+        warning_window,
+        text=(
+            "WARNING: DO NOT ABUSE THIS PANEL. ABUSE COUNTS AS MISUSE OF A MODERATION PANEL, "
+            "AND YOU WILL BE DEMOTED, BANNED FROM USING IT, OR ASSIGNED LOWER RANKS."
+        ),
+        wraplength=450,
+        bg="#2E2E2E",
+        fg="red",
+        font=("Arial", 10, "bold")
+    )
+    warning_label.pack(pady=20)
+
+    def continue_action():
+        warning_window.destroy()
+        show_key_system()  # Show the key system after warning
+
+    continue_button = ttk.Button(warning_window, text="Continue", command=continue_action)
+    continue_button.pack(pady=10)
+
+    warning_window.mainloop()
+
+# Define the reasons dictionary with descriptive text
+reasons_dict = {
+    "language": "Inappropriate Language, swearing and Bullying",
+    "cbscripts": "Using anti chat logger to prevent being banned, and chat bypass hacks, check if there are any third party modifications, he's using scripts",
+    "voicechat": "Inappropriate Language in voicechat",
+    "info": "Asking for or Giving Private Information",
+    "displayname": "Inappropriate DisplayName",
+    "harassment": "Bullying, Harassment, Discrimination",
+    "dating": "Dating",
+    "exploiting": "Hacking, please act immediately, using scripts",
+    "theft": "Account Theft - Phishing, Hacking, Trading",
+    "content": "Inappropriate Content - Place, Image, Model",
+    "threats": "Real Life Threats & Suicide Threats",
+    "avatar": "Inappropriate avatar",
+    "age": "Inaccurate Age Guidelines (e.g. blood, violence)",
+    "other": "Other rule violation"
+}
+
+reason_descriptions = {
+    "language": "using offensive Language, swearing, or bullying",
+    "cbscripts": "using anti chat logger, bypass hacks, or third-party scripts",
+    "voicechat": "using offensive Language in voicechat",
+    "info": "asking for or giving private information",
+    "displayname": "having an inappropriate DisplayName",
+    "harassment": "bullying, harassment, or discrimination",
+    "dating": "engaging in dating behavior",
+    "exploiting": "hacking or exploiting the system with scripts",
+    "theft": "involved in account theft, phishing, or trading",
+    "content": "posting inappropriate content like images, models, or places",
+    "threats": "making real-life threats or suicide threats",
+    "avatar": "using an inappropriate avatar",
+    "age": "providing inaccurate age information, including blood or violence",
+    "other": "violating other unspecified rules"
+}
+
+def simulate_paste():
+    keyboard.press_and_release('/')
+    time.sleep(0.05)  # Short delay
+    pyautogui.hotkey('ctrl', 'v')  # Simulate pressing Ctrl+V
+    time.sleep(0.05)  # Short delay
+    keyboard.press_and_release('enter')
+
+def simulate_assistlont():
+    pyperclip.copy('#TeamAssistlontModerators')
+    time.sleep(0.02)  # Short delay
+    pyautogui.moveTo(925, 510)
+    pyautogui.click()
+    time.sleep(0.02)  # Short delay
+    keyboard.press_and_release('/')
+    time.sleep(0.02)  # Short delay
+    pyautogui.hotkey('ctrl', 'v')  # Simulate pressing Ctrl+V
+    time.sleep(0.02)  # Short delay
+    keyboard.press_and_release('enter')
+
+
+
+def simulate_chatFQ():
+    pyperclip.copy('Did you know, since we(Assistlont) have joined the roblox community, the ban processes has increased by 50% in most of the games.')
+    time.sleep(0.02)  # Short delay
+    pyautogui.moveTo(925, 510)
+    pyautogui.click()
+    time.sleep(0.02)  # Short delay
+    simulate_paste()
+
+
+def simulate_Ginvite():
+    pyperclip.copy('F͎O͎R͎ ͎A͎N͎Y͎O͎N͎E͎ ͎T͎H͎A͎T͎S͎ ͎I͎N͎T͎E͎R͎E͎S͎T͎E͎D͎ ͎I͎N͎ ͎O͎U͎R͎ ͎T͎E͎A͎M͎,͎ ͎F͎E͎E͎L͎ ͎F͎R͎E͎E͎ ͎T͎O͎ ͎J͎O͎I͎N͎ ͎A͎S͎A͎P͎,͎ ͎D͎C͎ ͎L͎I͎N͎K͎:͎ ͎')
+    time.sleep(0.02)  # Short delay
+    pyautogui.moveTo(925, 510)
+    pyautogui.click()
+    time.sleep(0.02)  # Short delay
+    keyboard.press_and_release('/')
+    time.sleep(0.02)  # Short delay
+    pyautogui.hotkey('ctrl', 'v')  # Simulate pressing Ctrl+V
+    time.sleep(0.02)  # Short delay
+    keyboard.press_and_release('enter')
+    time.sleep(0.02)  # Short delay
+    pyperclip.copy('.͎g͎g͎/͎8͎k͎D͎Q͎k͎k͎n͎m͎h͎H͎')
+    time.sleep(0.02)  # Short delay
+    simulate_paste()
+
+def moderate_account():
+    username_input = entry_username_input.get()
+    user_input = entry_user_input.get()
+    reason = listbox_reasons.get(tk.ACTIVE)
+
+    if not user_input:
+        messagebox.showwarning("Input Error", "Please provide a phrase.")
+        return
+    if not reason:
+        messagebox.showwarning("Input Error", "Please provide a Reason.")
+        return
+
+    clipboard_text = f"CM {username_input or '()'} {reason}"
+    pyperclip.copy(clipboard_text)
+    time.sleep(0.02)  # Short delay
+    pyautogui.moveTo(925, 510)
+    pyautogui.click()
+    simulate_paste()
+
+    user_input_words = user_input.split(", ")
+    formatted_input = '\", \"'.join(user_input_words)
+    reason_text = f'Saying or calling someone "{formatted_input}". This is considered {reason_descriptions[reason.lower()]}. CHECK THEIR CHATS. #TAM '
+    reason_text2 = f'Happy christmas, mods! <3'
+
+    label_result.config(text=reason_text2)
+    pyperclip.copy(reason_text)
+
+# Create the main window (hidden initially)
+root = tk.Tk()
+root.title("ASSISTLONT Moderation Tool v0.1")
+root.geometry("450x450")
+root.resizable(False, False)
+root.attributes("-topmost", True)
+root.configure(bg="#2E2E2E")  # Dark gray background
+root.withdraw()  # Hide the main window until warning is cleared
+
+font_style = ("Arial", 10)
+header_font = ("Arial", 12, "bold")
+
+# Username Input
+label_username_input = tk.Label(root, text="Username (Optional but Recommended):", bg="#2E2E2E", fg="white", font=font_style)
+label_username_input.pack(pady=5)
+entry_username_input = ttk.Entry(root, width=40)
+entry_username_input.pack(pady=5)
+
+# User Input
+label_user_input = tk.Label(root, text="What did the user say?", bg="#2E2E2E", fg="white", font=font_style)
+label_user_input.pack(pady=5)
+entry_user_input = ttk.Entry(root, width=40)
+entry_user_input.pack(pady=5)
+
+# Reason Selection
+label_reason = tk.Label(root, text="Reason:", bg="#2E2E2E", fg="white", font=font_style)
+label_reason.pack(pady=5)
+
+listbox_reasons = tk.Listbox(root, height=8, width=40, selectmode=tk.SINGLE, bg="#3A3A3A", fg="white", bd=0, font=font_style, relief="flat")
+for reason in reasons_dict:
+    listbox_reasons.insert(tk.END, reason.capitalize())
+listbox_reasons.pack(pady=5)
+
+# Result Label
+label_result_frame = tk.Frame(root, bg="#2E2E2E")
+label_result_frame.pack(pady=10)
+
+# Load the image R.png
+img = tk.PhotoImage(file="R.png")
+img = img.subsample(10, 10)  # Scale down the image by 10%
+
+# Buttons
+button_frame = tk.Frame(root, bg="#2E2E2E")
+button_frame.pack(pady=10)
+
+style = ttk.Style()
+style.configure("TButton", font=font_style, padding=5, relief="flat")
+style.map("TButton", background=[("active", "#5E5E5E")])
+
+button_moderate = ttk.Button(button_frame, text="Moderate Account", command=moderate_account)
+button_moderate.pack(side=tk.LEFT, padx=5)
+
+button_chatassistlont = ttk.Button(button_frame, text="#TeamAssistlontModerators", command=simulate_assistlont)
+button_chatassistlont.pack(side=tk.LEFT, padx=5)
+
+button_chatdiscordinv = ttk.Button(button_frame, text="#DISCORD INVITE", command=simulate_Ginvite)
+button_chatdiscordinv.pack(side=tk.RIGHT, padx=5)
+
+button_chatFQ = ttk.Button(root, text="#FQ", command=simulate_chatFQ)
+button_chatFQ.pack(pady=5)
+
+
+# Create the label with both the text and the image
+label_result = tk.Label(
+    label_result_frame,
+    text="HAPPY CHRISTMAS, MODS!",
+    fg="white",
+    bg="#2E2E2E",
+    font=("Arial", 12, "bold"),
+    relief="solid",
+    highlightthickness=1,
+    highlightbackground="red",
+)
+
+# Display the image next to the text
+image_label = tk.Label(label_result_frame, image=img, bg="#2E2E2E")
+image_label.image = img  # Keep a reference to the image to prevent garbage collection
+
+# Pack the text label and image label side by side
+label_result.pack(side=tk.LEFT)
+image_label.pack(side=tk.LEFT, padx=5)  # Add some padding to the right of the image
+
+# Load valid keys
+valid_keys = fetch_valid_keys()
+
+# Show startup warning
+show_startup_warning()
+
+root.mainloop()
